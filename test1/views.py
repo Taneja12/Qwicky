@@ -94,7 +94,7 @@ def add_record(request):
         form=ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('<h2>Data Added Successfully</h2>')
+            return redirect('home')
         
 
 
