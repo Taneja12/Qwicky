@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME PAGE</title>
+
+  <style>
+    .d-block {
+      height: 90vmin;
+      width: 100vmin;
+      object-fit: cover;
+    }
+
+    #pizza {
+      object-position: 20% 50%;
+    }
+
+    #coffee {
+      object-position: 20% 75%;
+    }
+
+    #burger {
+      object-position: 20% 90%;
+    }
+
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body >
+
+  <!-- Navbar Starts HEre  -->
+
+  {% include 'test1/navbar.html' %}
+  <!-- Navbar Ends Here -->
+
+  <!-- Carousel Start Here -->
+<div style="background-color: burlywood; ">
+  <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner h-100 ">
+      <div class="carousel-item active">
+        <img
+          src="https://images.pexels.com/photos/1556688/pexels-photo-1556688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          id="burger" class="d-block w-100" alt="image" style="width: 100%;">
+        <div class="carousel-caption d-none d-md-block "
+          style="width: 200vmin 200vmin; margin-bottom : 60vmin ;margin-left: 60vmin;">
+          <h5 style=" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold;">BURGER
+          </h5>
+          <p style=" font-family: 'Times New Roman', Times, serif; ">Crafting Burgers Beyond Ordinary – Taste the
+            Difference!</p>
+        </div>
+      </div>
+      <div class="carousel-item h-100">
+        <img
+          src="https://images.pexels.com/photos/3186743/pexels-photo-3186743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          id="coffee" class="d-block w-100" alt="image">
+        <div class="carousel-caption d-none d-md-block" style="margin-bottom: 65vmin;margin-left: 65vmin;">
+          <h5 style=" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold;">
+            NESCAFE Classic</h5>
+          <p style="font-family: 'Times New Roman', Times, serif;">Start Strong, Start with Nescafé</p>
+        </div>
+      </div>
+      <div class="carousel-item w-100">
+        <img
+          src="https://img.freepik.com/free-photo/freshly-baked-homemade-pizza-rustic-table-generated-by-ai_24640-81778.jpg?t=st=1692708968~exp=1692709568~hmac=82413e8297014d1058da3141f42208d27a2eaec29602139e96cbf6407523d85d"
+          id="pizza" class="d-block w-100" alt="image">
+        <div class="carousel-caption d-none d-md-block" style="margin-bottom: 68vmin;margin-left: 67vmin;">
+          <h5 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold;">PIZZA
+            MANIA</h5>
+          <p style=" font-family: 'Times New Roman', Times, serif;">A Slice of Heaven, Now at Heavenly Prices!</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="container text-center mt-4">
+    <p style="font-weight: bolder; font-size: 35px;">Our Products</p>
+  </div>
+
+  <!-- Carousel ends here -->
+
+
+  <!-- Product begins here -->
+  <div class="container text-center" style="background-color:burlywood;">
+    <div class="row">
+      {% for y in page_obj %}
+      <div class="col">
+        <div class="container text-center"style="background-color: burlywood; ">
+          <div class="card mb-3 mt-3" style="width: 20rem;background-color:rgb(252, 232, 196); border-radius: 25px;">
+            <img src="{{ y.img.url }}" class="card-img-top" alt="image"
+              style="  width: 100%; height: 300px;object-fit: cover;object-position: 50% 40%;max-block-size: 46vh; border-radius: 25px 25px 0 0;">
+            <div class="card-body">
+              <p class="card-title" style="font-weight: bold;font-size: 30px;">{{ y.Title }}</p>
+              <!--<p class="card-text">#{{ y.product_id}}</p> -->
+              <p style="font-weight: bold;font-size: 20px;">Price : {{y.price}}/-</p>
+              <p>{{y.Description|slice:":80"}}...</p>
+              <a href="#" class="btn" style="background-color:rgb(248, 184, 128); font-weight: bolder;">ADD TO CART</a>
+              <a class="btn" href="{{y.id}}">More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="pagination mb-3 mt-1">
+        <span class="step-links" style="width: 180vmin;">
+          {% if page_obj.has_previous %}
+          <a href="?page=1"
+            style="color: black;  font-family: 'Times New Roman', Times, serif; font-weight: bolder; ">&laquo; First</a>
+          <a href="?page={{ page_obj.previous_page_number }}"
+            style="color: black;  font-family: 'Times New Roman', Times, serif; font-weight: bold; ;">Previous</a>
+          {% endif %}
+
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}"
+            style="color: black; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}"
+            style="color: black; font-family: 'Times New Roman', Times, serif; font-weight: bolder">Last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Product Ends Here -->
+
+  <!-- Footer Starts Here  -->
+  <div>
+    {% include 'test1/footer.html' %}
+  </div>
+  <!-- Footer Ends Here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
